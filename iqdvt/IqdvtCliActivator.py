@@ -11,9 +11,7 @@ class IqdvtCliActivator(ExecutableActivator):
         self.iqdvtCli = 'C:\\IQDVT_TEST\\Bin\\IQDVT-CLI.exe'
         super().__init__(self.iqdvtCli, flags)
         self.flags = flags
-
-    # def AnalyzeResponse(self,response): should be a virtual method
-    #     pass
+    
 
     def printFlags(self):
         print(f'IqdvtCliActivator, flags: {self.flags}')
@@ -23,7 +21,6 @@ class IqdvtCliActivator(ExecutableActivator):
 
     def ExecuteReturnOutput(self):
         response = super().ExecuteReturnOutput()
-        self.AnalyzeResponse(response)
         return response
 
     async def AsyncExecute(self):
