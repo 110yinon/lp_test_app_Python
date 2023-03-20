@@ -1,0 +1,54 @@
+{
+    "ignoreBelow": true,
+    "isBinFolder": true,
+    "tests": [
+        {
+            "command":"install",
+            "path":"./executions/IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe",            
+            "expect": true
+        },
+        {
+            "command":"uninstall",
+            "expect": true
+        },
+        {
+            "command":"help",
+            "expect": true
+        },
+        {
+            "command": "cli",
+            "station": "celeno_16_02_2023.sta",
+            "flow": "iterate.flow",
+            "comment": "iterate to pass",
+            "expect": true
+        },
+        {
+            "command": "cli",
+            "station": "celeno_16_02_2023.sta",
+            "flow": "pass-failed-pass.flow",
+            "comment": "pass-failed-pass to FAILED",
+            "expect": false
+        },
+        {
+            "command": "cli",
+            "station": "celeno_16_02_2023.sta",
+            "flow": "iterate.flow",
+            "comment": "iterate to pass",
+            "expect": true
+        },
+        {
+            "command": "cli",
+            "station": "celeno_16_02_2023.sta",
+            "flow": "pass-pass-failed.flow",
+            "comment": "pass-pass-failed to FAILED",
+            "expect": false
+        },
+        {
+            "command": "cli",
+            "station": "celeno_16_02_2023.sta",
+            "flow": "11axRx.flow",
+            "comment": "11ax rx to pass",
+            "expect": true
+        }
+    ]
+}
