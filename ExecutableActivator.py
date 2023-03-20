@@ -3,26 +3,26 @@
 ###
 
 import subprocess
-from iqdvt.HelpResponse import HelpResponse
+from iqdvt.AnalyzeResponse import AnalyzeResponse
 
-class ExecutableActivator(HelpResponse):
+class ExecutableActivator(AnalyzeResponse):
     def __init__(self, iqdvtCli, flags):
         print('CTOR ExecutableActivator')		# optional params
         super().__init__(flags)        
         self.execCommand = [iqdvtCli] + flags
-
+        
     # def __init__(self, cmd):
         # self.cmdStruct = "%s" % cmd
         # self.cmd = cmd
 
     def printMe(self):
         print(
-            f'ExecutableActivator, flags: {self.flags}, execCommand: {self.execCommand}')
+            f'ExecutableActivator, execCommand: {self.execCommand}')
 
     def Execute(self):
         try:
             result = subprocess.run(
-                self.execCommand, shell=True, capture_output=True, text=True)
+                self.execCommand, shell=True, capture_output=True, text=True, cwd=self.currentWorkingDir)
             return result
         
         except:
@@ -32,7 +32,9 @@ class ExecutableActivator(HelpResponse):
 
     def ExecuteReturnOutput(self):
         execResponse = self.Execute()
+        # print(execResponse.stdout)
         retStatus = self.AnalyzeResponse(execResponse)
+        # print(retStatus)
         return retStatus
 
     async def AsyncExecute(self):

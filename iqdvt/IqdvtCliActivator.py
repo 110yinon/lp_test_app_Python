@@ -11,9 +11,11 @@ class IqdvtCliActivator(ExecutableActivator):
         self.iqdvtCli = 'C:\\IQDVT_TEST\\Bin\\IQDVT-CLI.exe'
         super().__init__(self.iqdvtCli, flags)
         self.flags = flags
+        self.currentWorkingDir = self.iqdvtCli.split('IQDVT-CLI.exe')[0]
     
 
     def printFlags(self):
+        # print(f'IqdvtCliActivator, currentWorkingDir: {self.currentWorkingDir}')
         print(f'IqdvtCliActivator, flags: {self.flags}')
 
     def Execute(self):

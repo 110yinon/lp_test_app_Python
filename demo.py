@@ -5,11 +5,17 @@ from iqdvt.IqdvtCliActivator import IqdvtCliActivator
 
 # demo code:
 
-ExecutableFrameworkObj = IqdvtCliActivator(['--help'])
+
+station='C:\\LitePoint\\stations\\celeno_16_02_2023.sta'
+flow='C:\\LitePoint\\flows\\txCal.flow'
+
+ExecutableFrameworkObj = IqdvtCliActivator(['--v1',f'--station={station}',f'--flow={flow}'])
+# ExecutableFrameworkObj = IqdvtCliActivator(['--help'])
 # ExecutableFrameworkObj.printFlags()
 # ExecutableFrameworkObj.printMe()
-# ExecutableFrameworkObj.printHelpFlags()
-print(f'~~ contain help flag: {ExecutableFrameworkObj.ExecuteReturnOutput()}')
+# ExecutableFrameworkObj.printAnalyzeFlags()
+# print(f'~~ contain help flag: {ExecutableFrameworkObj.ExecuteReturnOutput()}')
+print(f'~~ txCal.flow is pass: {ExecutableFrameworkObj.ExecuteReturnOutput()}')
 
 # ExecutableFrameworkObj = HelpResponseFile.HelpResponse()
 # ExecutableFrameworkObj.Execute()
