@@ -3,6 +3,7 @@ import FilterFiles
 # from iqdvt.HelpResponse import HelpResponseFile
 # from iqdvt.IqdvtCliActivator import IqdvtCliActivator
 from iqdvt.IqdvtCliHelpActivator import IqdvtCliHelpActivator
+from iqdvt.IqdvtCliFlowActivator import IqdvtCliFlowActivator
 import json
 # from config import configJSONFile
 
@@ -12,11 +13,14 @@ import json
 #     kuni = json.load(configJSONFile)
 #     print(kuni)
 
-station='C:\\LitePoint\\stations\\celeno_16_02_2023.sta'
-flow='C:\\LitePoint\\flows\\txCal.flow'
+station = 'C:\\LitePoint\\stations\\celeno_16_02_2023.sta'
+flow = 'C:\\LitePoint\\flows\\txCal.flow'
 
 ExecutableFrameworkObj = IqdvtCliHelpActivator();
 print(f'~~ contain help flag: {ExecutableFrameworkObj.ExecuteReturnOutput()}')
+
+ExecutableFrameworkObj = IqdvtCliFlowActivator(station, flow)
+print(f'~~ txCal.flow to pass: {ExecutableFrameworkObj.ExecuteReturnOutput()}')
 
 # ExecutableFrameworkObj = IqdvtCliActivator(['--v1',f'--station={station}',f'--flow={flow}'])
 # ExecutableFrameworkObj = IqdvtCliActivator(['--help'])
