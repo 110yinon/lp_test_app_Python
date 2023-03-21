@@ -4,7 +4,7 @@ from iqdvt.IqdvtCliActivator import IqdvtCliActivator
 class IqdvtCliHelpActivator(IqdvtCliActivator):
 
     def __init__(self):
-        self.flags = ['-- help']
+        self.flags = ['--help']
         super().__init__(self.flags) # passing the self.flags to the IqdvtCliActivator ctor
 
 
