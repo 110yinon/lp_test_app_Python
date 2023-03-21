@@ -3,13 +3,15 @@
 ###
 
 import subprocess
-from iqdvt.AnalyzeResponse import AnalyzeResponse
+# from iqdvt.AnalyzeResponse import AnalyzeResponse
 
-class ExecutableActivator(AnalyzeResponse):
-    def __init__(self, iqdvtCli, flags):
+class ExecutableActivator():
+    def __init__(self, execArgs, cwd):
+    # def __init__(self, iqdvtCli, flags, cwd):
         print('CTOR ExecutableActivator')		# optional params
-        super().__init__(flags)        
-        self.execCommand = [iqdvtCli] + flags
+        # super().__init__(flags)        
+        self.execCommand = execArgs
+        self.currentWorkingDir = cwd
         
     # def __init__(self, cmd):
         # self.cmdStruct = "%s" % cmd
@@ -23,6 +25,7 @@ class ExecutableActivator(AnalyzeResponse):
         try:
             result = subprocess.run(
                 self.execCommand, shell=True, capture_output=True, text=True, cwd=self.currentWorkingDir)
+            
             return result
         
         except:
@@ -32,10 +35,8 @@ class ExecutableActivator(AnalyzeResponse):
 
     def ExecuteReturnOutput(self):
         execResponse = self.Execute()
-        # print(execResponse.stdout)
-        retStatus = self.AnalyzeResponse(execResponse)
-        # print(retStatus)
-        return retStatus
+        # print(f'{execResponse}')
+        return execResponse
 
     async def AsyncExecute(self):
         return self.Execute()
