@@ -8,7 +8,7 @@ from ExecutableActivator import ExecutableActivator
 class IqdvtCliActivator(ExecutableActivator):
     
     def __init__(self, flags):
-        print('CTOR IqdvtCliActivator')		# optional params
+        # print('CTOR IqdvtCliActivator')
 
         self.iqdvtCli = 'C:\\IQDVT_TEST\\Bin\\IQDVT-CLI.exe'
         self.currentWorkingDir = self.iqdvtCli.split('IQDVT-CLI.exe')[0]

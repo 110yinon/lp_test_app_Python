@@ -8,7 +8,7 @@ import subprocess
 class ExecutableActivator():
     def __init__(self, execArgs, cwd):
     # def __init__(self, iqdvtCli, flags, cwd):
-        print('CTOR ExecutableActivator')		# optional params
+        # print('CTOR ExecutableActivator')
         # super().__init__(flags)        
         self.execCommand = execArgs
         self.currentWorkingDir = cwd
