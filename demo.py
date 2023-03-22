@@ -4,6 +4,7 @@ import FilterFiles
 # from iqdvt.IqdvtCliActivator import IqdvtCliActivator
 from iqdvt.IqdvtCliHelpActivator import IqdvtCliHelpActivator
 from iqdvt.IqdvtCliFlowActivator import IqdvtCliFlowActivator
+from iqdvt.IqdvtInstallActivator import IqdvtInstallActivator
 import json
 # from config import configJSONFile
 
@@ -13,14 +14,23 @@ import json
 #     kuni = json.load(configJSONFile)
 #     print(kuni)
 
-station = 'C:\\LitePoint\\stations\\celeno_16_02_2023.sta'
-flow = 'C:\\LitePoint\\flows\\txCal.flow'
+# station = 'C:\\LitePoint\\stations\\celeno_16_02_2023.sta'
+# flow = 'C:\\LitePoint\\flows\\txCal.flow'
 
-ExecutableFrameworkObj = IqdvtCliHelpActivator();
-print(f'~~ contain help flag: {ExecutableFrameworkObj.ExecuteReturnOutput()}')
+installationFile = 'C:\\Users\\ybarhum\\Downloads\\IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe'
+installLocation = 'C:\\IQDVT_TEST_PYTHON\\'
+isBinFolder = True
+filesToVerify = ['IQTest.dll', 'IQTestAPI.dll', 'IQDVT.exe', 'IQDVT-CLI.exe', 'exports.txt']
 
-ExecutableFrameworkObj = IqdvtCliFlowActivator(station, flow)
-print(f'~~ txCal.flow to pass: {ExecutableFrameworkObj.ExecuteReturnOutput()}')
+installationObject = IqdvtInstallActivator(installationFile, installLocation, filesToVerify ,isBinFolder)
+print(f'~~ installation pass: {installationObject.Execute()}')
+
+
+# ExecutableFrameworkObj = IqdvtCliHelpActivator();
+# print(f'~~ contain help flag: {ExecutableFrameworkObj.ExecuteReturnOutput()}')
+
+# ExecutableFrameworkObj = IqdvtCliFlowActivator(station, flow)
+# print(f'~~ txCal.flow to pass: {ExecutableFrameworkObj.ExecuteReturnOutput()}')
 
 # ExecutableFrameworkObj = IqdvtCliActivator(['--v1',f'--station={station}',f'--flow={flow}'])
 # ExecutableFrameworkObj = IqdvtCliActivator(['--help'])

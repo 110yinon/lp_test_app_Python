@@ -6,7 +6,7 @@ import subprocess
 # from iqdvt.AnalyzeResponse import AnalyzeResponse
 
 class ExecutableActivator():
-    def __init__(self, execArgs, cwd):
+    def __init__(self, execArgs, cwd=None):
     # def __init__(self, iqdvtCli, flags, cwd):
         # print('CTOR ExecutableActivator')
         # super().__init__(flags)        
