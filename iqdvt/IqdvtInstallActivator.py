@@ -22,7 +22,7 @@ class IqdvtInstallActivator(ExecutableActivator): # tbd - use abstract class tha
         super().Execute()
 
         # extract list of files from the installation folder (C:\\IQDVT_TEST_PYTHON)
-        listFiles = self.filterFilesObj.FilterFiles()
+        listFiles = self.filterFilesObj.Execute()
         # check if the verify files was installed
         isFileIncludes = all(item in listFiles for item in self.installationFiles2Verify)
         # print(isFileIncludes) # tbd - work via logger

@@ -11,7 +11,7 @@ class FilterFiles(ListDir.ListDir):
         self.srcGroup = srcGroup
         # self.targetGroup = targetGroup
 		
-    def FilterFiles(self):
+    def Execute(self):
         listOfFiles = super().ListDir()
         # print('\nList of files found (filter %s):' % self.srcGroup)
         # for element in listOfFiles:
