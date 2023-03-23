@@ -5,6 +5,7 @@ import FilterFiles
 from iqdvt.IqdvtCliHelpActivator import IqdvtCliHelpActivator
 from iqdvt.IqdvtCliFlowActivator import IqdvtCliFlowActivator
 from iqdvt.IqdvtInstallActivator import IqdvtInstallActivator
+from iqdvt.IqdvtUninstallActivator import IqdvtUninstallActivator
 import json
 # from config import configJSONFile
 
@@ -17,13 +18,18 @@ import json
 # station = 'C:\\LitePoint\\stations\\celeno_16_02_2023.sta'
 # flow = 'C:\\LitePoint\\flows\\txCal.flow'
 
-installationFile = 'C:\\Users\\ybarhum\\Downloads\\IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe'
+# installationFile = 'C:\\Users\\ybarhum\\Downloads\\IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe'
+installationFile = 'C:\\Users\\ybarhum\\Desktop\\lp_test_app\\executions\\IQDVT-Celeno-6XXX_1.1.2_Eng1_x64.exe'
 installLocation = 'C:\\IQDVT_TEST_PYTHON\\'
-isBinFolder = True
+isBinFolder = False
 filesToVerify = ['IQTest.dll', 'IQTestAPI.dll', 'IQDVT.exe', 'IQDVT-CLI.exe', 'exports.txt']
 
 installationObject = IqdvtInstallActivator(installationFile, installLocation, filesToVerify ,isBinFolder)
 print(f'~~ installation pass: {installationObject.Execute()}')
+
+uninstallObject = IqdvtUninstallActivator(installLocation)
+print(f'~~ uninstallation pass: {uninstallObject.Execute()}')
+
 
 
 # ExecutableFrameworkObj = IqdvtCliHelpActivator();
