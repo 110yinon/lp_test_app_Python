@@ -3,6 +3,8 @@
 ###
 
 import subprocess
+import sys
+import traceback
 # from iqdvt.AnalyzeResponse import AnalyzeResponse
 
 class ExecutableActivator():
@@ -18,24 +20,33 @@ class ExecutableActivator():
         # self.cmd = cmd
 
     def printMe(self):
-        print(
-            f'ExecutableActivator, execCommand: {self.execCommand}')
+        print(f'ExecutableActivator, execCommand: {self.execCommand}')
+
 
     def Execute(self):
         try:
             result = subprocess.run(
                 self.execCommand, shell=True, capture_output=True, text=True, cwd=self.currentWorkingDir)
             
+            # this check is indeed, else - subprocess.run stil doesnt throw execption even if returnCode isnt 0
+            # if check=True would select in subprocess.run - the method throw just CalledProcessError exception
+            # with no extra info from the stderr's subprocess.run
+            if(result.returncode > 0):
+                raise Exception(result)
+            
+            # exec done successfully, return True/False
             return result
         
-        except:
-            print('Error')
-            return False
+        except Exception as e:
+                print(f'ExecutableActivator - Error:')
+                traceback.print_exc()
+                print('------------------------------')
+                return False
         
 
     def ExecuteReturnOutput(self):
-        execResponse = self.Execute()
-        # print(f'{execResponse}')
+        execResponse = ExecutableActivator.Execute(self) # replaced with self.Execute() that cause initfite loop
+        # print(f'the exec response is: {execResponse}') # containts the stdout & stderr if needed
         return execResponse
 
     async def AsyncExecute(self):

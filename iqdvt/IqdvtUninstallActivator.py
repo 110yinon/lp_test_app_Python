@@ -18,14 +18,19 @@ class IqdvtUninstallActivator(ExecutableActivator):
             # print('the installation folder does not exist !') # tbd - work via logger
             return False
         
-        # calling the uninstall
-        super().Execute()
+        # calling the uninstall and checks it's success:
+        res = super().ExecuteReturnOutput()
+        # print(res)
+        # if uninst.exe fail - return false
+        if(res is False): 
+                return False
+        
 
         time.sleep(1)
 
         # checks if the iqdvt installation folder been removed
         isIqdvFolderRemoved = not os.path.isdir(self.installLocation)
-        # print(isIqdvFolderRemoved)
+        # print(isIqdvFolderRemoved) # tbd - work via logger
         return isIqdvFolderRemoved
 
     def Verify():

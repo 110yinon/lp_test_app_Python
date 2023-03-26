@@ -1,10 +1,11 @@
 {
     "ignoreBelow": true,
-    "isBinFolder": true,
+    "isBinFolder": false,
+    
     "tests": [
         {
             "command": "install",
-            "path": "./executions/IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe",
+            "installationFile": "C:\\Users\\ybarhum\\Desktop\\lp_test_app\\executions\\IQDVT-Celeno-6XXX_1.1.2_Eng1_x64.exe",
             "filesToVerify": ["IQTest.dll", "IQTestAPI.dll", "IQDVT.exe", "IQDVT-CLI.exe", "exports.txt"],
             "expect": true
         },
