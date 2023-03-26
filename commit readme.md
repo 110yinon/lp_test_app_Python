@@ -1,8 +1,11 @@
-demo.py:
-    breaking the test's iterate in case of install test in failed
+config.runner.json:
+    change the 'isBinFolder' value to true (cli flow been checked on CL-8)
+    rename to 'expectPass' from 'expect'
 
-IqdvtCliHelpActivator.py:
-    updates the IqdvtCliHelpActivator - now accepts isBinFolder and installLocation
-    so then IqdvtCliHelpActivator ctor is now able to handle this args to determine the relevant install location
-    also checks for the execution status of the calling 'iqdvt-cli.exe --help'
+IqdvtCliFlowActivator.py:
+    now gets isBinFolder and installLocation
+    staion and flow now gets relative path to 'flows' and 'stations' folders
+    rename to IqdvtCliFlowActivator.Execute() from IqdvtCliFlowActivator.ExecuteReturnOutput()
+    checks the status of execution for failed
+    prints the tracback in case of exception
     

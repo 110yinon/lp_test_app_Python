@@ -33,24 +33,36 @@ installLocation = configObject['installLocation'] if 'installLocation' in config
 try:
     for test in configObject['tests']:
         match test['command']:
-            case 'install':
-                installationObject = IqdvtInstallActivator(test['installationFile'], test['filesToVerify'], isBinFolder, installLocation)
-                result  = installationObject.Execute() is test['expect']
-                print(f'~~ installation pass: {result}')
+            # case 'install':
+            #     installationObject = IqdvtInstallActivator(test['installationFile'], test['filesToVerify'], isBinFolder, installLocation)
+            #     result  = installationObject.Execute() is test['expectPass']
+            #     print(f'~~ installation pass: {result}')
                 
-                if result is False:
-                    raise Exception('installation test failed')
+            #     if result is False:
+            #         raise Exception('installation test failed')
 
-            case 'uninstall':
-                uninstallObject = IqdvtUninstallActivator(installLocation)
-                result = uninstallObject.Execute() is test['expect']
-                print(f'~~ uninstallation pass: {result}')
-                # tbd - break/return in case of uninstall failed ??
+            # case 'uninstall':
+            #     uninstallObject = IqdvtUninstallActivator(installLocation)
+            #     result = uninstallObject.Execute() is test['expectPass']
+            #     print(f'~~ uninstallation pass: {result}')
+            #     # tbd - break/return in case of uninstall failed ??
+            #  tbd- return to install automaticallyy
 
-            case 'help':
-                helpCliObject = IqdvtCliHelpActivator(isBinFolder, installLocation)
-                result = helpCliObject.Execute() is test['expect']
-                print(f'~~ cli contain help flag: {result}')
+            # case 'help':
+            #     helpCliObject = IqdvtCliHelpActivator(isBinFolder, installLocation)
+            #     result = helpCliObject.Execute() is test['expectPass']
+            #     print(f'~~ cli contain help flag: {result}')
+            
+
+            case 'cli':                
+                flowCliObject = IqdvtCliFlowActivator(test['station'],test['flow'], isBinFolder, installLocation)
+                result = flowCliObject.Execute() is test['expectPass']
+                # print(f'~~ your flow name is pass: {result}')
+
+                # an improved log to the user
+                flowName = test['flow'].split('\\')[1]
+                passOrFailed = 'Pass' if test['expectPass'] else 'Failed'
+                print(f'~~ {flowName} to {passOrFailed}: {result}')
 
 
 
