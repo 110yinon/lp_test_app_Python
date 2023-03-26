@@ -30,24 +30,33 @@ installLocation = configObject['installLocation'] if 'installLocation' in config
 # isBinFolder = False
 # filesToVerify = ['IQTest.dll', 'IQTestAPI.dll', 'IQDVT.exe', 'IQDVT-CLI.exe', 'exports.txt']
 
+try:
+    for test in configObject['tests']:
+        match test['command']:
+            case 'install':
+                installationObject = IqdvtInstallActivator(test['installationFile'], test['filesToVerify'], isBinFolder, installLocation)
+                result  = installationObject.Execute() is test['expect']
+                print(f'~~ installation pass: {result}')
+                
+                if result is False:
+                    raise Exception('installation test failed')
 
-for test in configObject['tests']:
-    match test['command']:
-        case 'install':
-            installationObject = IqdvtInstallActivator(test['installationFile'], test['filesToVerify'], isBinFolder, installLocation)
-            result  = installationObject.Execute() is test['expect']
-            print(f'~~ installation pass: {result}')
-            # tbd - break/return in case of install failed
-            # if result is F:
-            #     break
+            case 'uninstall':
+                uninstallObject = IqdvtUninstallActivator(installLocation)
+                result = uninstallObject.Execute() is test['expect']
+                print(f'~~ uninstallation pass: {result}')
+                # tbd - break/return in case of uninstall failed ??
 
-        case 'uninstall':
-            uninstallObject = IqdvtUninstallActivator(installLocation)
-            result = uninstallObject.Execute() is test['expect']
-            print(f'~~ uninstallation pass: {result}')
-            # tbd - break/return in case of uninstall failed
+            case 'help':
+                helpCliObject = IqdvtCliHelpActivator(isBinFolder, installLocation)
+                result = helpCliObject.Execute() is test['expect']
+                print(f'~~ cli contain help flag: {result}')
 
-        # case 'help':
+
+
+except Exception as e:
+    print('demo.py - Error:',{e},'\nCanceling test suite, Bye Bye...','\n--------------')
+
 
 
 # installationObject = IqdvtInstallActivator(installationFile, installLocation, filesToVerify ,isBinFolder)

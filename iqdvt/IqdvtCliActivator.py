@@ -7,10 +7,10 @@ from ExecutableActivator import ExecutableActivator
 
 class IqdvtCliActivator(ExecutableActivator):
     
-    def __init__(self, flags):
+    def __init__(self, flags, isBinFolder, installLocation):
         # print('CTOR IqdvtCliActivator')
 
-        self.iqdvtCli = 'C:\\IQDVT_TEST\\Bin\\IQDVT-CLI.exe'
+        self.iqdvtCli = f"{installLocation}{'Bin' if isBinFolder else ''}\\IQDVT-CLI.exe"
         self.currentWorkingDir = self.iqdvtCli.split('IQDVT-CLI.exe')[0]
         
         self.execArgs = [self.iqdvtCli] + flags
@@ -30,7 +30,7 @@ class IqdvtCliActivator(ExecutableActivator):
 
     def ExecuteReturnOutput(self):
         execResponse = super().ExecuteReturnOutput()
-        print(f'{execResponse.stdout}')
+        # print(f'{execResponse.stdout}')
         return execResponse
 
     async def AsyncExecute(self):
