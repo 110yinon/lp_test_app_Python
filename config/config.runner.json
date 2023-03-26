@@ -33,6 +33,7 @@
             "command": "cli",
             "station": "celeno_16_02_2023.sta",
             "flow": "CL-8 flows\\11axRx.flow",
+            "iterates": 5,
             "expectPass": true
         }
     ]

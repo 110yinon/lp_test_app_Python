@@ -30,6 +30,7 @@ class IqdvtCliActivator(ExecutableActivator):
 
     def ExecuteReturnOutput(self):
         execResponse = super().ExecuteReturnOutput()
+        # tbd - set here the checks for false result and raise exeception if necessary
         # print(f'{execResponse.stdout}')
         return execResponse
 

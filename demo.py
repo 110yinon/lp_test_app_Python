@@ -46,7 +46,7 @@ try:
             #     result = uninstallObject.Execute() is test['expectPass']
             #     print(f'~~ uninstallation pass: {result}')
             #     # tbd - break/return in case of uninstall failed ??
-            #  tbd- return to install automaticallyy
+            #     # tbd- return to install automatically ??
 
             # case 'help':
             #     helpCliObject = IqdvtCliHelpActivator(isBinFolder, installLocation)
@@ -56,13 +56,19 @@ try:
 
             case 'cli':                
                 flowCliObject = IqdvtCliFlowActivator(test['station'],test['flow'], isBinFolder, installLocation)
-                result = flowCliObject.Execute() is test['expectPass']
-                # print(f'~~ your flow name is pass: {result}')
+                # checks for iterate option
+                iterates = test['iterates'] if 'iterates' in test.keys() else 1
+                
+                # runs the flow in iterates
+                for iterate in range(iterates):
+                    result = flowCliObject.Execute() is test['expectPass']
+                    # print(f'~~ your flow name is pass: {result}')
 
-                # an improved log to the user
-                flowName = test['flow'].split('\\')[1]
-                passOrFailed = 'Pass' if test['expectPass'] else 'Failed'
-                print(f'~~ {flowName} to {passOrFailed}: {result}')
+                    # an improved log to the user
+                    flowName = test['flow'].split('\\')[1]
+                    passOrFailed = 'Pass' if test['expectPass'] else 'Failed'
+                    iterateSign = f' (iterate-{iterate})' if iterates > 1 else ''
+                    print(f'~~ {flowName} to {passOrFailed}{iterateSign}: {result}')
 
 
 
