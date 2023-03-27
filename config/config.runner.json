@@ -1,21 +1,10 @@
 {
     "ignoreBelow": true,
-    "isBinFolder": true,
+    "isBinFolder": false,
     
     "tests": [
         {
-            "command": "install",
-            "installationFile": "C:\\Users\\ybarhum\\Desktop\\lp_test_app\\executions\\IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe",
-            "filesToVerify": ["IQTest.dll", "IQTestAPI.dll", "IQDVT.exe", "IQDVT-CLI.exe", "exports.txt"],
-            "expectPass": true
-        },
-        {
-            "command": "uninstall",
-            "expectPass": true
-        },
-        {
-            "command": "install",
-            "installationFile": "C:\\Users\\ybarhum\\Desktop\\lp_test_app\\executions\\IQDVT-Celeno-6XXX_1.1.2_Eng1_x64.exe",
+            "command": "install",            
             "filesToVerify": ["IQTest.dll", "IQTestAPI.dll", "IQDVT.exe", "IQDVT-CLI.exe", "exports.txt"],
             "expectPass": true
         },
@@ -25,15 +14,19 @@
         },
         {
             "command": "cli",
-            "station": "celeno_16_02_2023.sta",
-            "flow": "CL-8 flows\\pass-pass-failed.flow",
+            "station": "station-CL6.sta",
+            "flow": "CL-6 flows\\failed-pass-pass-cl6.flow",
             "expectPass": false
         },
         {
             "command": "cli",
-            "station": "celeno_16_02_2023.sta",
-            "flow": "CL-8 flows\\11axRx.flow",
+            "station": "station-CL6.sta",
+            "flow": "CL-6 flows\\11axRx-cl6.flow",
             "iterates": 5,
+            "expectPass": true
+        },
+        {
+            "command": "uninstall",
             "expectPass": true
         }
     ]

@@ -10,6 +10,9 @@ import json
 # from config import configJSONFile
 
 # demo code:
+with open('./config/installationFile.json', 'r') as installationJSONFile:
+    installationFile = json.load(installationJSONFile)['installationFile']
+    # print(installationFile)
 
 with open('./config/config.runner.json', 'r') as configJSONFile:
     configObject = json.load(configJSONFile)
@@ -33,25 +36,25 @@ installLocation = configObject['installLocation'] if 'installLocation' in config
 try:
     for test in configObject['tests']:
         match test['command']:
-            # case 'install':
-            #     installationObject = IqdvtInstallActivator(test['installationFile'], test['filesToVerify'], isBinFolder, installLocation)
-            #     result  = installationObject.Execute() is test['expectPass']
-            #     print(f'~~ installation pass: {result}')
+            case 'install':
+                installationObject = IqdvtInstallActivator(installationFile, test['filesToVerify'], isBinFolder, installLocation)
+                result  = installationObject.Execute() is test['expectPass']
+                print(f'~~ installation pass: {result}')
                 
-            #     if result is False:
-            #         raise Exception('installation test failed')
+                if result is False:
+                    raise Exception('installation test failed')
 
-            # case 'uninstall':
-            #     uninstallObject = IqdvtUninstallActivator(installLocation)
-            #     result = uninstallObject.Execute() is test['expectPass']
-            #     print(f'~~ uninstallation pass: {result}')
-            #     # tbd - break/return in case of uninstall failed ??
-            #     # tbd- return to install automatically ??
+            case 'uninstall':
+                uninstallObject = IqdvtUninstallActivator(installLocation)
+                result = uninstallObject.Execute() is test['expectPass']
+                print(f'~~ uninstallation pass: {result}')
+                # tbd - break/return in case of uninstall failed ??
+                # tbd- return to install automatically ??
 
-            # case 'help':
-            #     helpCliObject = IqdvtCliHelpActivator(isBinFolder, installLocation)
-            #     result = helpCliObject.Execute() is test['expectPass']
-            #     print(f'~~ cli contain help flag: {result}')
+            case 'help':
+                helpCliObject = IqdvtCliHelpActivator(isBinFolder, installLocation)
+                result = helpCliObject.Execute() is test['expectPass']
+                print(f'~~ cli contain help flag: {result}')
             
 
             case 'cli':                
