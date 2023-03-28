@@ -33,5 +33,6 @@ class IqdvtCliFlowActivator(IqdvtCliActivator):
         except Exception as e:            
             print(f'IqdvtCliFlowActivator - Error:')
             traceback.print_exc()
+            print(f'>> the stdout is:\n{execResponse.stdout}')
             print('-------------------')            
             return False

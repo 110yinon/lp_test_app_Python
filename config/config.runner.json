@@ -1,6 +1,6 @@
 {
     "ignoreBelow": true,
-    "isBinFolder": false,
+    "isBinFolder": true,
     
     "tests": [
         {
@@ -14,14 +14,14 @@
         },
         {
             "command": "cli",
-            "station": "station-CL6.sta",
-            "flow": "CL-6 flows\\failed-pass-pass-cl6.flow",
+            "station": "celeno_16_02_2023.sta",
+            "flow": "CL-8 flows\\failed-pass-pass.flow",
             "expectPass": false
         },
         {
             "command": "cli",
-            "station": "station-CL6.sta",
-            "flow": "CL-6 flows\\11axRx-cl6.flow",
+            "station": "celeno_16_02_2023.sta",
+            "flow": "CL-8 flows\\11axRx.flow",
             "iterates": 5,
             "expectPass": true
         },
