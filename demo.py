@@ -35,8 +35,8 @@ installLocation = configObject['installLocation'] if 'installLocation' in config
 
 try:
     for test in configObject['tests']:
-        match test['command']:
-            case 'install':
+         
+            if test['command'] == 'install':
                 installationObject = IqdvtInstallActivator(installationFile, test['filesToVerify'], isBinFolder, installLocation)
                 result  = installationObject.Execute() is test['expectPass']
                 print(f'~~ installation pass: {result}')
@@ -44,20 +44,20 @@ try:
                 if result is False:
                     raise Exception('installation test failed')
 
-            case 'uninstall':
+            elif test['command'] == 'uninstall':
                 uninstallObject = IqdvtUninstallActivator(installLocation)
                 result = uninstallObject.Execute() is test['expectPass']
                 print(f'~~ uninstallation pass: {result}')
                 # tbd - break/return in case of uninstall failed ??
                 # tbd- return to install automatically ??
 
-            case 'help':
+            elif test['command'] == 'help':
                 helpCliObject = IqdvtCliHelpActivator(isBinFolder, installLocation)
                 result = helpCliObject.Execute() is test['expectPass']
                 print(f'~~ cli contain help flag: {result}')
             
 
-            case 'cli':                
+            elif test['command'] == 'cli':                
                 flowCliObject = IqdvtCliFlowActivator(test['station'],test['flow'], isBinFolder, installLocation)
                 # checks for iterate option
                 iterates = test['iterates'] if 'iterates' in test.keys() else 1
