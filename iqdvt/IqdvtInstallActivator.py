@@ -33,11 +33,21 @@ class IqdvtInstallActivator(ExecutableActivator):
 
             # extract list of files from the installation folder (usually 'C:\\IQDVT_TEST_PYTHON')
             listFiles = self.filterFilesObj.Execute()
-            # check if the verify files was installed
-            isFileIncludes = all(item in listFiles for item in self.installationFiles2Verify)
+            # check if the verify files was installed:
+            for file2Verify in self.installationFiles2Verify:
+                # the 'for file in listFiles' is a literal that returns iterateatble list
+                # the 'item in listFiles' is the condition to check in that iterateatble list    
+                isInclude = all(file2Verify in listFiles for file in listFiles)
+                if(not isInclude):
+                    print(f'>> the {file2Verify} file is not include')
+                    return False
+            return True
+
+            # previous version of the above check
+            # isFileIncludes = all(item in listFiles for item in self.installationFiles2Verify)
             # print(isFileIncludes) # tbd - work via logger
 
-            return isFileIncludes 
+            # return isFileIncludes 
 
 
         except Exception as e:
